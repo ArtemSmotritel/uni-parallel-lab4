@@ -4,11 +4,11 @@ import interfaces.Table;
 
 import java.util.List;
 
-public class SimpleTable implements Table {
-    private List<Fork> forks;
-    private List<Philosopher> philosophers;
+public class TableWithSwitchingForks implements Table {
+    private final List<Fork> forks;
+    private final List<Philosopher> philosophers;
 
-    public SimpleTable(List<Fork> forks, List<Philosopher> philosophers) {
+    public TableWithSwitchingForks(List<Fork> forks, List<Philosopher> philosophers) {
         this.forks = forks;
         this.philosophers = philosophers;
     }
@@ -28,6 +28,11 @@ public class SimpleTable implements Table {
             philosophers.get(i).setLeftFork(forks.get(i));
             philosophers.get(i).setRightFork(forks.get((i + 1) % forks.size()));
         }
+
+        final var lastPhilosopherIndex = philosophers.size() - 1;
+        philosophers.get(lastPhilosopherIndex).setRightFork(forks.get(lastPhilosopherIndex));
+        philosophers.get(lastPhilosopherIndex).setLeftFork(forks.get((lastPhilosopherIndex + 1) % forks.size()));
+
         System.out.println("---------------------------------------------------");
 
         for (Philosopher philosopher : philosophers) {

@@ -20,7 +20,7 @@ public class Main {
             forks.add(new SimpleFork());
         }
 
-        Table table = new SimpleTable(forks, philosophers);
+        Table table = new WaitingTable(forks, philosophers);
 
         table.run();
     }
