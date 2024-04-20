@@ -42,7 +42,7 @@ public class SimplePhilosopher implements Philosopher {
         System.out.printf("%s IS EATING\n", this);
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(0);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
